@@ -1,0 +1,152 @@
+//@import "reset.scss";
+@import "HdV_GLOBAL.scss";
+
+//ICONs
+$iconUser : url(../img/account_b.png);
+$iconPass : url(../img/senha_b.png);
+$iconEmail : url(../img/email_b.png);
+$iconLogar : url(../img/logar_b.png);
+$iconLogarH : url(../img/logar_p.png);
+$iconSend : url(../img/enviar_b.png);
+$iconSendH : url(../img/enviar_p.png);
+
+@mixin border-radius($radius) {
+  -moz-border-radius    : $radius;
+  -webkit-border-radius : $radius;
+  -ms-border-radius     : $radius;
+  border-radius         : $radius;
+}
+
+body {
+  height           : 100%;
+  margin           : 0;
+  padding          : 0;
+  font             : normal 1em Verdana, sans-serif;
+  background-color : $VERDE;
+  color            : $BRANCO;
+  //font-weight      : bold;
+}
+
+button {
+  color          : $BRANCO;
+  font-weight    : bold;
+  font-size      : larger;
+  border         : 3px solid $BRANCO;
+  padding        : 10px 20px 10px 45px;
+  margin         : 10px 0;
+  vertical-align : middle;
+  @include border-radius(6px);
+  &.BTN_logar {
+    background : $VERDE $iconLogar no-repeat 10px center;
+    &:hover, &:focus {
+      outline    : none;
+      background : $AMARELO $iconLogarH no-repeat 10px center;
+      color      : $PRETO;
+    }
+  }
+  &.BTN_enviar {
+    background : $VERDE $iconSend no-repeat 10px center;
+    &:hover, &:focus {
+      outline    : none;
+      background : $AMARELO $iconSendH no-repeat 10px center;
+      color      : $PRETO;
+    }
+  }
+}
+
+table {
+  text-align     : center;
+  vertical-align : middle;
+}
+
+div#LOGAR {
+  position   : fixed;
+  top        : 40%;
+  left       : 50%;
+  transform  : translate(-50%, -50%);
+  text-align : center;
+}
+
+.faixa_amarela {
+  background-color : $AMARELO;
+  position         : fixed;
+  bottom           : 0;
+  width            : 100%;
+  height           : 10%;
+  //font-weight      : bold;
+  text-align       : center;
+  padding-top      : 10px;
+  vertical-align   : middle;
+  color            : black
+}
+
+#loginError {
+  //margin-top       : 15px;
+  font-weight      : bold;
+  padding          : 10px 20px;
+  background-color : $VERMELHO;
+  @include border-radius(6px);
+}
+
+.login_user {
+  background : $iconUser center no-repeat transparent;
+  padding    : 12px;
+}
+
+.login_pass {
+  background : $iconPass center no-repeat transparent;
+  padding    : 12px;
+}
+
+.login_email {
+  background : $iconEmail center no-repeat transparent;
+  padding    : 12px;
+}
+
+a.login_esqueci {
+  float           : left;
+  left            : 0;
+  position        : relative;
+  text-align      : left;
+  padding         : 20px;
+  text-decoration : none;
+  color           : $BRANCO;
+  vertical-align  : middle;
+  &:hover {
+    text-decoration : underline;
+  }
+}
+
+input.text {
+  background-color        : $BRANCO;
+  border                  : 2px solid $VERDE;
+  padding                 : 5px 10px;
+  font-size               : 1em;
+  line-height             : 1.5em;
+  margin                  : 0;
+  -webkit-appearance      : none;
+  box-shadow              : none;
+  @include border-radius(8px);
+  -webkit-text-fill-color : $PRETO !important;
+  box-sizing              : border-box;
+  -moz-box-sizing         : border-box;
+  -webkit-box-sizing      : border-box;
+
+  &:focus {
+    outline : none;
+  }
+  &:-moz-placeholder {
+    color : $CINZA_placeholder;
+  }
+  &::-webkit-input-placeholder {
+    color : $CINZA_placeholder;
+  }
+  &:-webkit-autofill {
+    background-color   : $BRANCO;
+    border             : 2px solid $VERDE;
+    padding            : 5px 10px;
+    margin             : 0;
+    -webkit-box-shadow : 0 0 0px 1000px white inset;
+  }
+}
+

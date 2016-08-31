@@ -1,0 +1,314 @@
+@import "HdV_GLOBAL.scss";
+
+// ICONES
+$iconDOWN : url(../img/download_b.png);
+$iconUP : url(../img/upload_b.png);
+$iconDRAG : url(../img/drag_b.png);
+
+$navICONS : home menu_home,
+turmas menu_turmas,
+listas menu_listas,
+questoes menu_questoes,
+usuarios menu_usuarios,
+mais menu_dropdown;
+
+nav.prof ul {
+  @each $tab in $navICONS {
+    li.#{nth($tab, 1)} a {
+      color : $BRANCO;
+      @include backgroundShorthand(#{nth($tab, 2)}_b, $VERDE, no-repeat, 8px center);
+      &:hover, &:focus {
+        outline : none;
+        color   : $PRETO;
+        @include backgroundShorthand(#{nth($tab, 2)}_p, $AMARELO, no-repeat, 8px center);
+        @include shadow_none();
+        @include transition(color .3s ease-out, background .3s ease-out);
+        //@include transition(color .3s ease-out, background .3s ease-out, box-shadow .3s ease-out);
+        //@include shadow(2px, -2px, 3px, $PRETOsombra);
+      }
+      &.tabAtiva {
+        color : $PRETO;
+        @include backgroundShorthand(#{nth($tab, 2)}_p, $AMARELO, no-repeat, 8px center);
+        @include shadow_none();
+        //@include shadow(2px, -2px, 3px, $PRETOsombra);
+      }
+    }
+  }
+}
+
+table {
+  width      : 100%;
+  text-align : center;
+  &.HdV_listar {
+    border          : none;
+    border-collapse : collapse;
+    width           : 100%;
+    text-align      : left;
+    @include box_sizing(border-box);
+    th {
+      padding          : 5px 0;
+      background-color : $AMARELO;
+      text-align       : center;
+      font-weight      : bold;
+      font-size        : medium;
+      border           : none;
+      a {
+        text-decoration : none;
+        color           : $PRETO;
+        &:hover, &:focus {
+          outline         : none;
+          text-decoration : underline;
+        }
+      }
+    }
+    tr {
+      background-color : $VERDE;
+      border-top       : 2px $BRANCO solid;
+      padding          : 0;
+      @include transition(background-color .5s ease-out);
+      &:hover, &:focus {
+        outline          : none;
+        background-color : $VERDE_escuro;
+        @include transition(background-color .5s ease-out);
+      }
+      td {
+        color          : $BRANCO;
+        text-align     : left;
+        border         : none;
+        vertical-align : middle;
+        padding        : 5px;
+        a {
+          color           : $BRANCO;
+          display         : block;
+          text-decoration : none;
+        }
+        &.tdImgCenter {
+          text-align : center;
+          height     : 36px;
+          width      : 36px;
+          a {
+            text-align      : center;
+            height          : 36px;
+            width           : 36px;
+            text-decoration : none;
+            &:hover, &:focus {
+              outline          : none; // AKI
+              background-color : $VERDE_menosescuro;
+              @include transition(background-color .5s ease-out);
+            }
+            img {
+              text-align : center;
+              margin     : 0;
+              height     : 36px;
+              width      : 36px;
+            }
+          }
+        }
+        input[type=datepicker], input[type=timepicker] {
+          border      : 1px solid $AMARELO;
+          padding     : 2px;
+          font-size   : 1em;
+          line-height : 1em;
+          margin      : 0;
+          &:focus {
+            outline : none;
+          }
+          &:-moz-placeholder, &::-webkit-input-placeholder {
+            color : $CINZA_placeholder;
+          }
+          &[readonly] {
+            background-color : $CINZA_claro;
+          }
+        }
+      }
+    }
+    tr.TRsortable {
+      background : none;
+      padding    : 0;
+      margin     : 0;
+      td {
+        padding : 0;
+        margin  : 0;
+        ul {
+          padding : 0;
+          margin  : 0;
+          li {
+            list-style       : none;
+            margin           : 2px 0;
+            padding          : 10px;
+            background-color : $VERDE;
+            vertical-align   : middle;
+            cursor           : move;
+            @include transition(background-color .5s ease-out);
+            &:hover, &:focus {
+              outline          : none;
+              background-color : $VERDE_escuro;
+              @include transition(background-color .5s ease-out);
+            }
+            div {
+              background     : $iconDRAG no-repeat left center;
+              color          : $BRANCO;
+              padding        : 0;
+              display        : block;
+              vertical-align : middle;
+              a {
+                display        : block;
+                float          : right;
+                top            : -2px;
+                vertical-align : middle;
+                padding        : 0 10px;
+                @include translate(0, -2px);
+                img {
+                  clear          : both;
+                  vertical-align : middle;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &.HdV_form {
+    width           : 50%;
+    margin          : auto;
+    border          : none;
+    border-collapse : collapse;
+    tr {
+      td {
+        border          : none;
+        border-collapse : collapse;
+        text-align      : left;
+        padding         : 5px;
+        input[type=text], textarea {
+          border      : 2px solid $VERDE;
+          padding     : 5px 10px;
+          font-size   : 1em;
+          line-height : 1.5em;
+          margin      : 0;
+          resize      : vertical;
+          &:focus {
+            outline : none;
+          }
+          &:-moz-placeholder {
+            color : $CINZA_placeholder;
+          }
+
+          &::-webkit-input-placeholder {
+            color : $CINZA_placeholder;
+          }
+          &:-webkit-autofill {
+            //color              : $BRANCO !important;
+            background-color   : $BRANCO;
+            border             : 2px solid $VERDE;
+            padding            : 5px 10px;
+            margin             : 0;
+            -webkit-box-shadow : 0 0 0px 1000px white inset;
+          }
+        }
+        input[readonly] {
+          background-color : $CINZA_claro;
+        }
+        label {
+          font-size : 1.2em;
+        }
+
+        div.TDshow {
+          display : block;
+        }
+        div.TDhide {
+          display : none;
+        }
+        input.btn_show {
+          padding          : 10px 25px;
+          /*margin: 0px -2px;*/
+          background-color : #FC0;
+          color            : black;
+          font-weight      : bold;
+          border           : inherit;
+        }
+        input.btn_hide {
+          padding          : 10px 25px;
+          /*margin: 0px -2px;*/
+          background-color : #063;
+          color            : white;
+          font-weight      : bold;
+          border           : inherit;
+        }
+        #listas {
+          border  : 2px solid #063;
+          padding : 20px;
+        }
+        #alunos {
+          border  : 2px solid #063;
+          padding : 20px;
+        }
+      }
+    }
+  }
+}
+
+input {
+  &.cb {
+    height : 15px;
+    width  : 15px;
+  }
+  &.HDV_text {
+    padding      : 5px;
+    border-color : $VERDE;
+  }
+}
+
+#HdV_DFA {
+  text-align : center;
+  div.pergunta {
+    text-align : left;
+    padding    : 5px 35px 0 35px;
+    h2 {
+      margin : 0 0 25px 10px;
+    }
+    #Qcorpo, #sigma {
+      font-size     : 1.2em;
+      padding-left  : 25px;
+      margin-bottom : 20px;
+    }
+  }
+}
+
+button {
+  &.salvar {
+    @include backgroundShorthand(salvar_b, $VERDE, no-repeat, 15px center);
+    &:hover, &:focus {
+      outline          : none;
+      background-color : $VERDE_escuro;
+    }
+  }
+  &.inserir {
+    @include backgroundShorthand(add_b, $VERDE, no-repeat, 15px center);
+    &:hover, &:focus {
+      outline          : none;
+      background-color : $VERDE_escuro;
+    }
+  }
+  &.reenviar {
+    @include backgroundShorthand(reenviar_b, $VERDE, no-repeat, 15px center);
+    &:hover, &:focus {
+      outline          : none;
+      background-color : $VERDE_escuro;
+    }
+  }
+  &.exportar {
+    @include backgroundShorthand(download_b, $VERDE, no-repeat, 15px center);
+    &:hover, &:focus {
+      outline          : none;
+      background-color : $VERDE_escuro;
+    }
+  }
+  &.importar {
+    @include backgroundShorthand(upload_b, $VERDE, no-repeat, 15px center);
+    &:hover, &:focus {
+      outline          : none;
+      background-color : $VERDE_escuro;
+    }
+  }
+}

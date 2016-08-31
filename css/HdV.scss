@@ -1,0 +1,525 @@
+//@import "reset.scss";
+//@import "RudeworksReset";
+@import "HdV_GLOBAL.scss";
+
+html, body {
+  height  : 100%;
+  margin  : 0;
+  padding : 0;
+  font    : normal 1em Verdana, sans-serif;
+}
+
+.HdV_page {
+  min-height : 100%;
+  position   : relative;
+}
+
+.HdV_body {
+  margin     : auto;
+  width      : 960px; //60%;
+  min-height : 100%;
+  position   : relative;
+  padding    : 20px 20px 100px 20px;
+  @include box_sizing (border-box);
+  //border: 2px solid black;
+}
+
+.HdV_footer {
+  display          : block;
+  background-color : $VERDE;
+  color            : $BRANCO;
+  text-align       : center;
+  padding          : 10px 0;
+  position         : absolute;
+  bottom           : 0;
+  width            : 100%;
+  clear            : both;
+}
+
+.HdV_header_titulo {
+  color        : $BRANCO;
+  padding-left : 40px;
+}
+
+.HdV_header_verde {
+  background-color : $VERDE;
+}
+
+#HdV_banner {
+  width            : 960px; //800px; //60%;
+  height           : 100px;
+  margin           : 0 auto;
+  position         : relative;
+  display          : block;
+  padding          : 0;
+  color            : #FFF;
+  background-color : #063;
+  @include box_sizing (content-box);
+  //border           : 1px solid white;
+  text-decoration  : none;
+  #logoUFABC {
+    //border   : 1px solid white;
+    position : absolute;
+    width    : 174px;
+    height   : 80px;
+    left     : 95px; //75px; //140px;//0;
+    top      : 10px;
+  }
+  #logoDFAjudge {
+    //border   : 1px solid white;
+    position : absolute;
+    height   : 80px;
+    width    : 175px;
+    left     : 380px; //460px; //300px; //320px; //350px; //189px;
+    top      : 10px;
+  }
+  #logoCMCC {
+    //border   : 1px solid white;
+    position : absolute;
+    width    : 185px;
+    height   : 50px;
+    left     : 690px; //560px; //615px;
+    top      : 25px;
+  }
+}
+
+nav.HdV_menu {
+  padding       : 0;
+  margin        : 0;
+  border        : 0;
+  width         : 100%;
+  //height: 33px;
+  background    : $VERDE;
+  border-bottom : 20px solid $AMARELO;
+  @include shadow(0px, 5px, 6px, $CINZA);
+  font-size     : 1.15em;
+  text-align    : left;
+  //display: block;
+  ul {
+    position       : relative;
+    width          : 960px; //800px;
+    padding        : 0;
+    margin         : 0 auto;
+    @include centralizar();
+    //text-align     : left;
+    list-style     : none;
+    z-index        : 100;
+    text-transform : uppercase;
+    //display: block;
+    li {
+      position       : relative;
+      //float          : left;
+      min-height     : 1px;
+      vertical-align : middle;
+      padding        : 0; // espaco entre as tabs
+      display        : inline-block;
+      margin         : 0 1px;
+      a {
+        line-height     : 1.8em; //32px;
+        display         : block;
+        text-decoration : none;
+        text-align      : left;
+        vertical-align  : middle;
+        padding-left    : 30px; //33px;
+        padding-right   : 8px; //8px;
+        margin          : 0;
+        text-transform  : uppercase;
+        @include border-radius(4px 4px 0 0);
+      }
+      ul {
+        position       : absolute;
+        //top            : 50px;
+        left           : 0;
+        display        : none;
+        top            : 100%;
+        width          : 100%; //200px;
+        padding        : 0;
+        margin         : 0;
+        list-style     : none;
+        z-index        : 101;
+        text-transform : uppercase;
+        @include shadow(5px, 5px, 4px, rgba(0, 0, 0, 0.3));
+        @include border-radius(0 0 4px 4px);
+        li {
+          //position : relative;
+          display : block;
+          width   : 100%;
+          right   : 0;
+          border  : 0;
+          margin  : 0;
+          padding : 0;
+          a {
+            @include border-radius(0px);
+            padding-top    : 2px;
+            padding-bottom : 2px;
+          }
+          // ===== SUB MENU
+          $subnavICONS : minhaconta menu_conta,
+          ajuda menu_ajuda,
+          sobre menu_sobre,
+          sair menu_sair;
+          @each $tab in $subnavICONS {
+            &.#{nth($tab, 1)} a {
+              color : $BRANCO;
+              @include backgroundShorthand(#{nth($tab, 2)}_b, $VERDE, no-repeat, 8px center);
+              &:hover, &:focus {
+                color : $PRETO;
+                @include backgroundShorthand(#{nth($tab, 2)}_p, $AMARELO, no-repeat, 8px center);
+                @include transition(color .3s ease-out, background .3s ease-out);
+                @include shadow_none();
+              }
+            }
+          }
+          &.sair, &.sair a {
+            @include border-radius(0 0 4px 4px);
+          }
+        }
+      }
+      &:hover ul, &:focus ul {
+        outline : none;
+        display : block;
+      }
+      //&.ajuda, &.sair {
+      //  display     : inline-block;
+      //  float       : right;
+      //  margin-left : 8px;
+      //}
+    }
+  }
+}
+
+#HdV_toolbar {
+  display          : block;
+  margin-bottom    : 25px;
+  vertical-align   : middle;
+  background-color : $BRANCO;
+  padding          : 0;
+  width            : 100%;
+  height           : 48px;
+  .back {
+    display         : inline-block;
+    vertical-align  : middle;
+    margin          : 0;
+    text-decoration : none;
+    width           : 48px;
+    height          : 48px;
+    a {
+      height  : 48px;
+      width   : 48px;
+      display : block;
+    }
+  }
+  .titulo {
+    display        : inline-block;
+    vertical-align : middle;
+    margin         : 0;
+    padding        : 0;
+    h1 {
+      margin      : 0 0 0 15px;
+      display     : block;
+      font-size   : 2em;
+      font-weight : bold;
+    }
+  }
+  .add {
+    position       : relative;
+    float          : right;
+    margin-right   : 15px;
+    vertical-align : middle;
+    a {
+      text-decoration : none;
+      width           : 48px;
+      height          : 48px;
+      display         : block;
+    }
+  }
+  .more {
+    position       : relative;
+    float          : right;
+    margin-right   : 15px;
+    vertical-align : middle;
+    a {
+      text-decoration : none;
+      width           : 48px;
+      height          : 48px;
+      display         : block;
+    }
+  }
+}
+
+#HdV_DFA {
+  text-align : center;
+  div.pergunta {
+    text-align : left;
+    padding    : 5px 25px 0 25px;
+    h2 {
+      margin : 0 0 25px 10px;
+    }
+    #Qcorpo, #sigma {
+      font-size     : 1.2em;
+      padding-left  : 25px;
+      margin-bottom : 20px;
+    }
+  }
+}
+
+#erros {
+  &.mostrar {
+    font-family      : "Courier New", Courier, monospace;
+    padding          : 20px 30px;
+    color            : $BRANCO;
+    background-color : $VERMELHO;
+    @include border-radius(20px);
+    text-align       : left;
+    margin           : 20px 0;
+  }
+  &.hidden {
+    display : none;
+  }
+}
+
+canvas.DFA {
+  display    : block;
+  //max-width  : 800px;
+  background : $BRANCO;
+  border     : 2px solid $VERDE;
+  @include border-radius(20px);
+  margin     : 10px auto;
+  @include box_sizing (border-box);
+}
+
+#correcao {
+  #resultado {
+    padding        : 0 30px;
+    color          : $BRANCO;
+    font-weight    : bold;
+    text-align     : left;
+    vertical-align : middle;
+    line-height    : 1.5em;
+    @include border-radius(20px);
+    margin         : 20px 0;
+    &.acertou {
+      background-color : $correcao_VERDE;
+      div, img {
+        display        : inline-block;
+        vertical-align : middle;
+      }
+    }
+    &.errou {
+      background-color : $correcao_VERMELHO;
+      div, img {
+        display        : inline-block;
+        vertical-align : middle;
+      }
+    }
+    &.salvo {
+      background-color : $correcao_AZUL;
+      div, img {
+        display        : inline-block;
+        vertical-align : middle;
+      }
+    }
+  }
+}
+
+button {
+  padding          : 15px 30px 15px 50px;
+  margin           : 10px;
+  color            : $BRANCO;
+  font-weight      : bold;
+  font-size        : 1.2em;
+  text-decoration  : none;
+  border           : none;
+  outline          : none;
+  @include border-radius(5px);
+  @include shadow(0, 3px, 4px, rgba(0, 0, 0, .6));
+  background-color : $VERDE; // #2ECC71;
+  cursor           : pointer;
+  &:hover, &:focus {
+    background-color : $VERDE_escuro;
+  }
+  &:active {
+    transform : translateY(3px);
+    @include shadow(0, 1px, 1px, rgba(0, 0, 0, .6));
+    @include transition(transform .2s cubic-bezier(0.14, 0.62, 0.58, 1),
+            box-shadow .2s cubic-bezier(0.14, 0.62, 0.58, 1));
+  }
+}
+
+[tooltip] {
+  @include box_sizing (border-box);
+  position : relative;
+  cursor   : auto;
+
+  /* Hide the tooltip content by default */
+  &:before,
+  &:after {
+    visibility     : hidden; //visible;
+    -ms-filter     : "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter         : progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity        : 0;
+    pointer-events : none;
+    position       : absolute;
+    bottom         : 85%;
+    left           : 50%;
+    z-index        : 1000;
+    text-transform : none;
+  }
+
+  /* Position tooltip above the element */
+  &:before {
+    width            : 180px;
+    margin-left      : -97px;
+    margin-bottom    : 5px;
+    padding          : 7px;
+    @include border-radius(8px);
+    background-color : #000;
+    background-color : hsla(0, 0%, 20%, 0.9);
+    color            : #FFF;
+    content          : attr(tooltip);
+    text-align       : center;
+    font-size        : 0.8em; /*14px;*/
+    line-height      : 1.2;
+    white-space      : pre-line;
+  }
+
+  /* Triangle hack to make tooltip look like a speech bubble */
+  &:after {
+    margin-left  : -5px;
+    width        : 0;
+    border-top   : 5px solid #000;
+    border-top   : 5px solid hsla(0, 0%, 20%, 0.9);
+    border-right : 5px solid transparent;
+    border-left  : 5px solid transparent;
+    content      : " ";
+    font-size    : 0;
+    line-height  : 0;
+  }
+
+  /* Show tooltip content on hover */
+  &:hover:before,
+  &:hover:after,
+  &:focus:before,
+  &:focus:after {
+    visibility : visible;
+    -ms-filter : "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter     : progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity    : 1;
+    outline    : none;
+  }
+}
+
+button[tooltip], li a[tooltip] {
+  &:before,
+  &:after {
+    bottom : 105%;
+  }
+}
+
+.conta_senha {
+  @include backgroundShorthand(senha_p, $BRANCO, no-repeat, center center);
+  padding : 0;
+  width   : 32px;
+  height  : 32px;
+}
+
+.conta_senhanova {
+  @include backgroundShorthand(senhanova_p, $BRANCO, no-repeat, center center);
+  padding : 0;
+  width   : 32px;
+  height  : 32px;
+}
+
+.text_pass {
+  background-color        : $BRANCO;
+  border                  : 2px solid $VERDE;
+  padding                 : 5px 10px;
+  font-size               : 1em;
+  line-height             : 1.5em;
+  margin                  : 0;
+  -webkit-appearance      : none;
+  @include shadow_none();
+  @include border-radius(8px);
+  @include box_sizing (border-box);
+  -webkit-text-fill-color : $PRETO !important;
+
+  &:focus {
+    outline : none;
+  }
+  &:-moz-placeholder {
+    color : $CINZA_placeholder;
+  }
+  &::-webkit-input-placeholder {
+    color : $CINZA_placeholder;
+  }
+  &:-webkit-autofill {
+    background-color   : $BRANCO;
+    border             : 2px solid $VERDE;
+    padding            : 5px 10px;
+    margin             : 0;
+    -webkit-box-shadow : 0 0 0 1000px white inset;
+  }
+}
+
+#BTN_redefinir {
+  @include backgroundShorthand(senhatroca_b, $VERDE, no-repeat, 15px center);
+  margin-right : 0;
+}
+
+table.HdV_tutorial {
+  table-layout     : fixed;
+  background-color : transparent;
+  border-collapse  : collapse;
+  @include box_sizing (content-box);
+  //border           : 1px solid red;
+  tr {
+    td {
+      word-wrap   : break-word;
+      //border      : 1px solid black;
+      text-align  : left;
+      line-height : 1.5em;
+      &.gif {
+        padding        : 5px 0;
+        vertical-align : top;
+        img {
+          margin  : 0 auto;
+          display : block;
+        }
+      }
+      &.descricao {
+        padding        : 5px;
+        vertical-align : middle;
+        h4 {
+          margin : 5px auto;
+        }
+        p {
+          margin : 10px 0;
+          img {
+            display        : inline-block;
+            vertical-align : top;
+            padding        : 0;
+            margin         : 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.bemvindo {
+  //border     : 1px solid black;
+  display     : block;
+  width       : 100%;
+  height      : 100%;
+  min-height  : 255px;
+  text-align  : left;
+  line-height : 1.5em;
+  margin      : 0 auto;
+  //vertical-align : bottom;
+  img#LOGOhome {
+    //float  : left;
+    //margin : 0px 15px 15px -50px;
+    float  : right;
+    margin : 0 0 15px 0;
+  }
+}

@@ -1,0 +1,184 @@
+//colors
+$VERDE : #063;
+$AMARELO : #FC0;
+$BRANCO : #FFF;
+$PRETO : #000;
+$PRETOsombra : rgba(0, 0, 0, 0.4);
+
+$VERDE_escuro : #004D26; //#005a3c; //#004D26; //#00331A;
+$CINZA : #808080; //rgba(0, 0, 0, 0.5);
+$CINZA_claro : #CCC; //rgba(0, 0, 0, 0.2);
+$CINZA_placeholder : #333; //rgba(0, 0, 0, 0.8);
+$VERMELHO : #F00; //#FF1A1A; //#F33; //#900;
+$VERDE_menosescuro : #052;
+$VERDE_claro : rgba(0, 102, 51, .3);
+$correcao_VERDE : #060;
+$correcao_VERMELHO : #F00; //#900;
+$correcao_AZUL : #009;
+$LARANJA : #CC5200;
+
+//aluno
+//$CINZA : rgba(0, 0, 0, 0.3);
+//$CINZA_claro : #F0F0F0;
+
+// todos os mixin q achei
+// pra usar eh so chamar:
+//  .class {
+//    @include funcao();
+//  }
+
+@mixin border-radius($radius) {
+  -moz-border-radius    : $radius;
+  -webkit-border-radius : $radius;
+  -ms-border-radius     : $radius;
+  border-radius         : $radius;
+}
+
+@mixin shadow( $x, $y, $blur, $color ) {
+  -webkit-box-shadow : $x $y $blur $color;
+  -moz-box-shadow    : $x $y $blur $color;
+  box-shadow         : $x $y $blur $color;
+}
+
+@mixin shadow_none() {
+  -webkit-box-shadow : none;
+  -moz-box-shadow    : none;
+  box-shadow         : none;
+}
+
+@mixin box_sizing( $arg ) {
+  box-sizing         : $arg;
+  -moz-box-sizing    : $arg;
+  -webkit-box-sizing : $arg;
+}
+
+// generic transform
+@mixin transform($transforms) {
+  -webkit-transform : $transforms;
+  -moz-transform    : $transforms;
+  -ms-transform     : $transforms;
+  -o-transform      : $transforms;
+  transform         : $transforms;
+}
+
+// translate
+@mixin translate($x, $y) {
+  @include transform(translate($x, $y));
+}
+
+@mixin center() {
+  display      : block;
+  margin-left  : auto;
+  margin-right : auto;
+}
+
+@mixin centralizar() {
+  display : block;
+  margin  : 0 auto;
+}
+
+@mixin size($width, $height: $width) {
+  width  : $width;
+  height : $height;
+}
+
+@mixin tamanho($largura, $altura: $largura) {
+  width  : $largura;
+  height : $altura;
+}
+
+//1. Set a rem font size with pixel fallback
+
+@mixin font-size($size) {
+  font-size : $size;
+  font-size : ($size / 16px) * 1rem;
+  //@function calculateRem($size){$remSize:$size/16px;@return$remSize*1rem;}
+  //font-size : calculateRem($size);
+  //Usage:
+  //p {
+  //  @include font-size(14px)
+  //}
+  //Output:
+  //p {
+  //  font-size: 14px; //Will be overridden if browser supports rem
+  //  font-size: 0.8rem;
+  //}
+}
+
+@mixin backgroundExt($name:false, $size:false, $color:false,$repeat: no-repeat, $pos:false) {
+  $image-path : '../img' !default;
+  $fallback-extension : 'png' !default;
+  @if ($color) {
+    background-color : $color;
+  } @else {
+    background-color : transparent;
+  }
+  background-repeat : $repeat;
+  @if ($name) {
+    background-image : url(#{$image-path}/#{$name}.png);
+  }
+  @if ($size) {
+    background-size : $size;
+  }
+  @if ($pos) {
+    background-position : $pos;
+  } @else {
+    background-position : 0 0;
+  }
+  //USE:
+  //.testeBG {
+  //  @include backgroundExt(hahaha);
+  //}
+  //RESULT:
+  //.testeBG {
+  //  background-image    : url(../img/hahaha.png);
+  //  background-color    : transparent;
+  //  background-position : 0 0;
+  //  background-repeat   : no-repeat
+  //}
+}
+
+@mixin backgroundShorthand($name:false, $color:transparent, $repeat: no-repeat, $position:0 0) {
+  $image-path : '../img' !default;
+  $fallback-extension : 'png' !default;
+  background : $color url(#{$image-path}/#{$name}.png) $repeat $position;;
+  //USE
+  //.testeBG2 {
+  //  @include backgroundShorthand(hahaha);
+  //}
+  //RESULT:
+  //.testeBG2 {
+  //  background : transparent url(../img/hahaha.png) no-repeat 0 0
+  //}
+}
+
+//5. Transitions
+@mixin transition($args...) {
+  -webkit-transition : $args;
+  -moz-transition    : $args;
+  -ms-transition     : $args;
+  -o-transition      : $args;
+  transition         : $args;
+  //Usage
+  //a {
+  //  color: gray;
+  //  @include transition(color .3s ease);
+  //  &:hover {
+  //    color: black;
+  //  }
+  //}
+}
+
+//6. Cross browser opacity
+@mixin opacity($opacity) {
+  opacity : $opacity;
+  $opacity-ie : $opacity * 100;
+  filter  : alpha(opacity=$opacity-ie); //IE8
+  //Usage
+  //.faded-text {
+  //  @include opacity(0.8);
+  //}
+}
+
+//
+

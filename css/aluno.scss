@@ -1,0 +1,143 @@
+@import "HdV_GLOBAL.scss";
+
+$navICONS : home menu_home,
+turmas menu_turmas,
+listas menu_listas,
+questoes menu_questoes,
+resposta menu_respondendo,
+mais menu_dropdown;
+
+nav.aluno {
+  @each $tab in $navICONS {
+    ul li.#{nth($tab, 1)} a {
+      color : $BRANCO;
+      @include backgroundShorthand(#{nth($tab, 2)}_b, $VERDE, no-repeat, 8px center);
+      &:hover, &:focus {
+        outline : none;
+        color   : $PRETO;
+        @include backgroundShorthand(#{nth($tab, 2)}_p, $AMARELO, no-repeat, 8px center);
+        @include transition(color .3s ease-out, background .3s ease-out);
+        @include shadow_none();
+        //@include transition(color .3s ease-out, background .3s ease-out, box-shadow .3s ease-out);
+        //@include shadow(2px, -2px, 3px, $PRETOsombra);
+      }
+      &.tabAtiva {
+        color : $PRETO;
+        @include backgroundShorthand(#{nth($tab, 2)}_p, $AMARELO, no-repeat, 8px center);
+        //@include shadow(2px, -2px, 3px, $PRETOsombra);
+        @include shadow_none();
+      }
+    }
+  }
+}
+
+table {
+  width      : 100%;
+  text-align : center;
+  &.HdV_listar {
+    border          : none;
+    border-collapse : collapse;
+    width           : 100%;
+    text-align      : left;
+    th {
+      padding          : 5px 0;
+      background-color : $AMARELO;
+      text-align       : center;
+      font-weight      : bold;
+      font-size        : medium;
+      border           : none;
+    }
+    tr {
+      background-color : $VERDE;
+      border-top       : 2px $BRANCO solid;
+      padding          : 0;
+      &:hover, &:focus {
+        outline          : none;
+        background-color : $VERDE_escuro;
+      }
+      td {
+        color          : $BRANCO;
+        text-align     : left;
+        border         : none;
+        vertical-align : middle;
+        padding        : 0;
+        a {
+          color           : $BRANCO;
+          display         : block;
+          padding         : 10px 10px;
+          text-decoration : none;
+        }
+        a:hover, &:focus {
+          outline         : none;
+          text-decoration : none;
+        }
+        &.tdImgCenter a {
+          text-decoration : none;
+          text-align      : center;
+          height          : 36px;
+          width           : 36px;
+          img {
+            text-align : center;
+            display    : block;
+            margin     : auto;
+          }
+        }
+      }
+    }
+  }
+  &.HdV_form {
+    width           : 50%;
+    margin          : auto;
+    border          : none;
+    border-collapse : collapse;
+    td {
+      border          : none;
+      border-collapse : collapse;
+      text-align      : left;
+      padding         : 5px;
+      label {
+        font-size : 1.2em;
+      }
+    }
+  }
+}
+
+#HdV_DFA {
+  form {
+    .botoes {
+      text-align : right;
+      button {
+        &#BTN_salvar {
+          @include backgroundShorthand(salvar_b, $VERDE, no-repeat, 15px center);
+          &:hover, &:focus {
+            outline          : none;
+            background-color : $VERDE_escuro;
+          }
+        }
+        &#BTN_submeter {
+          @include backgroundShorthand(enviar_b, $VERDE, no-repeat, 15px center);
+          &:hover, &:focus {
+            outline          : none;
+            background-color : $VERDE_escuro;
+          }
+        }
+      }
+    }
+  }
+}
+
+.limite {
+  padding          : 15px 30px;
+  color            : $BRANCO;
+  font-weight      : normal;
+  text-align       : left;
+  vertical-align   : middle;
+  @include border-radius(20px);
+  margin           : 20px 0;
+  background-color : $LARANJA;
+  div, img {
+    margin-left    : 10px;
+    display        : inline-block;
+    vertical-align : middle;
+  }
+}
